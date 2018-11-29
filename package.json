@@ -1,0 +1,50 @@
+{
+  "name": "react-slim3-boilerplate",
+  "version": "1.0.0",
+  "description": "React Slim3 PHP Boilerplate/Skeleton",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Crowdstar/React-Slim3-Boilerplate.git"
+  },
+  "keywords": [
+    "React",
+    "Slim3",
+    "PHP",
+    "Webpack",
+    "Babel",
+    "Boilerplate",
+    "Template"
+  ],
+  "author": "Mak Patil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Crowdstar/React-Slim3-Boilerplate/issues"
+  },
+  "homepage": "https://github.com/Crowdstar/React-Slim3-Boilerplate#readme",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-arrow-functions": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
