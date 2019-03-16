@@ -1,4 +1,6 @@
 {
+    "name": "react-slim3-boilerplate",
+    "description": "React Slim3 PHP Boilerplate/Skeleton",
     "require": {
         "slim/slim": "^3.0"
     }

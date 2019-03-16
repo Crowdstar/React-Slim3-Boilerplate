@@ -17,7 +17,9 @@
     "Webpack",
     "Babel",
     "Boilerplate",
-    "Template"
+    "Template",
+    "React PHP Boilerplate",
+    "React PHP Skeleton"
   ],
   "author": "Mak Patil",
   "license": "MIT",
