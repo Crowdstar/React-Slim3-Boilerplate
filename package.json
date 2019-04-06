@@ -4,6 +4,10 @@
   "description": "React Slim3 PHP Boilerplate/Skeleton",
   "main": "index.js",
   "scripts": {
+    "setup": "npm install && composer install",
+    "start": "npm run app:start",
+    "app:start": "webpack-dev-server --mode development --hot",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
