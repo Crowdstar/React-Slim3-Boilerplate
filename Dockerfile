@@ -1,10 +1,18 @@
 # Base image
 FROM alpine:3.9
 
-# Install packages
-RUN apk --no-cache add php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl \
-    php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
-    php7-mbstring php7-gd nginx supervisor curl
+# Install packages and php
+RUN apk --no-cache add php php-fpm php-mysqli \
+    php-json php-openssl php-curl \
+    php-zlib php-xml php-phar php-intl \
+    php-dom php-xmlreader php-ctype \
+    php-mbstring php-gd nginx supervisor wget curl \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+# Install node
+RUN apk update && \
+    apk upgrade && \
+    apk add nodejs npm
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
@@ -32,11 +40,15 @@ RUN mkdir -p /var/www/
 WORKDIR /var/www/
 COPY --chown=nobody ./ /var/www/
 
+# Install dependancies
+RUN npm install \
+    && composer install
+
 # Expose the port nginx is reachable on
-EXPOSE 8080 9000
+EXPOSE 80 9000
 
 # Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
+HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:80/fpm-ping
