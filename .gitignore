@@ -2,3 +2,4 @@
 node_modules/
 client/public/
 vendor/
+composer.lock
