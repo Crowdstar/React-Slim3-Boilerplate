@@ -1,7 +1,9 @@
 version: "3"
 
 services:
-  react-slim-boilerplate:
+  web:
     build: .
     ports:
       - 80:80
+    volumes:
+      - ./:/var/www
