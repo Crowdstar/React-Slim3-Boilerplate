@@ -24,31 +24,28 @@ COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /run && \
-  chown -R nobody.nobody /var/lib/nginx && \
-  chown -R nobody.nobody /var/tmp/nginx && \
-  chown -R nobody.nobody /var/log/nginx
-
-# Switch to use a non-root user from here on
-USER nobody
+# Creating a new user for nginx and php-fpm
+RUN adduser -D -g 'www' www \
+    && chown -R www:www /var/lib/nginx \
+    && chown -R www:www /var/tmp/nginx \
+    && chown -R www:www /var/log/nginx
 
 # Setup document root
 RUN mkdir -p /var/www/
 
 # Add application
 WORKDIR /var/www/
-COPY --chown=nobody ./ /var/www/
+COPY ./ /var/www/
 
 # Install dependancies
 RUN npm install \
     && composer install
 
 # Expose the port nginx is reachable on
-EXPOSE 80 9000
+EXPOSE 80
 
 # Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
-HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:80/fpm-ping
+HEALTHCHECK --timeout=5s CMD curl --silent --fail http://127.0.0.1:80/fpm-ping
