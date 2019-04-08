@@ -8,6 +8,7 @@
     "start": "npm run app:start",
     "app:start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
+    "server": "php -S localhost:8080 -t server server/src/index.php",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
