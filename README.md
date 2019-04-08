@@ -16,7 +16,7 @@ docker-compose up
 * Server(Slim PHP) can be accessed at [localhost:80](http://localhost:80/)
 * Now in a new tab 
 ```$xslt
-npm start
+npm start #in a new tab
 ```
 * Frontend(React) can be accessed at [localhost:9000](http://localhost:9000/)
 
